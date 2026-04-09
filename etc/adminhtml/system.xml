@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2026. Oleksandr Dykyi (https://github.com/odykyi-dev)
+  ~
+  ~ MIT License
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="odykyi" translate="label" sortOrder="400">
+            <label>Odykyi Extensions</label>
+        </tab>
+        <section id="esb_connector" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1"
+                 showInStore="1">
+            <label>ESB Connector</label>
+            <tab>odykyi</tab>
+            <resource>Odykyi_EsbConnector::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0"
+                   showInStore="0">
+                <label>General Settings</label>
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>Enable Synchronization</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_url" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0"
+                       showInStore="0">
+                    <label>ESB Ingestion URL</label>
+                    <comment>Example: http://your-esb-host/api/v1/ingest/magento</comment>
+                    <validate>validate-no-empty validate-url</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+                <field id="api_token" translate="label" type="obscure" sortOrder="30" showInDefault="1"
+                       showInWebsite="0" showInStore="0">
+                    <label>API Token</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                    <validate>validate-no-empty</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

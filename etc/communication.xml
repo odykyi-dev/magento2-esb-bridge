@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2026. Oleksandr Dykyi (https://github.com/odykyi-dev)
+  ~
+  ~ MIT License
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Communication/etc/communication.xsd">
+    <topic name="odykyi.esb.order.sync" request="int">
+        <handler name="odykyi_esb_order_sync_handler"
+                 type="Odykyi\EsbConnector\Model\Queue\OrderConsumer"
+                 method="process" />
+    </topic>
+</config>

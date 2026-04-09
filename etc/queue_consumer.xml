@@ -1,0 +1,11 @@
+<!--
+  ~ Copyright (c) 2026. Oleksandr Dykyi (https://github.com/odykyi-dev)
+  ~
+  ~ MIT License
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/consumer.xsd">
+    <consumer name="odykyi.esb.order.sync.consumer"
+              queue="odykyi.esb.order.sync"
+              handler="Odykyi\EsbConnector\Model\Queue\OrderConsumer::process" />
+</config>

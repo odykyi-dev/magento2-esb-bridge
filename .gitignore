@@ -1,0 +1,8 @@
+/vendor
+/var
+/generated
+/pub/static
+.idea/
+.vscode/
+auth.json
+*.log

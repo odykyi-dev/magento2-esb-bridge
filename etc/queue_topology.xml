@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2026. Oleksandr Dykyi (https://github.com/odykyi-dev)
+  ~
+  ~ MIT License
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework-message-queue:etc/topology.xsd">
+    <exchange name="magento" type="topic" connection="amqp">
+        <binding id="OdykyiOrderSyncBinding"
+                 topic="odykyi.esb.order.sync"
+                 destinationType="queue"
+                 destination="odykyi.esb.order.sync"/>
+    </exchange>
+</config>

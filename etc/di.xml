@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2026. Oleksandr Dykyi (https://github.com/odykyi-dev)
+  ~
+  ~ MIT License
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Odykyi\EsbConnector\Api\OrderPublisherServiceInterface"
+                type="Odykyi\EsbConnector\Service\OrderPublisherService"/>
+    <preference for="Odykyi\EsbConnector\Api\OrderSenderServiceInterface"
+                type="Odykyi\EsbConnector\Service\OrderSenderService"/>
+    <preference for="Odykyi\EsbConnector\Api\OrderTransformerServiceInterface"
+                type="Odykyi\EsbConnector\Service\OrderTransformerService"/>
+    <preference for="Odykyi\EsbConnector\Api\Data\EsbOrderDataInterface"
+                type="Odykyi\EsbConnector\Model\EsbOrderData"/>
+</config>
