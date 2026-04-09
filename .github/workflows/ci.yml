@@ -1,0 +1,53 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - '**'
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - '**'
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+
+jobs:
+  php-lint:
+    name: PHP Syntax Check
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+
+      - name: PHP Syntax Check
+        run: |
+          find src -name "*.php" -exec php -l {} \; 2>&1 | grep -v "No syntax errors"
+
+  phpcs:
+    name: PHP CodeSniffer (Magento2)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run Magento Coding Standard
+
+        uses: extdn/github-actions-m2/magento-coding-standard/8.3@master
+        with:
+          phpcs_standard: Magento2
+
+  phpstan:
+    name: PHPStan Static Analysis
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run PHPStan
+        with:
+          composer_name: odykyi/module-esb-connector
+        uses: extdn/github-actions-m2/magento-phpstan/8.3@master

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<ruleset name="Magento2 ESB Connector">
+    <description>Magento2 coding standard for Odykyi_EsbConnector module</description>
+    <arg name="colors"/>
+    <arg name="tab-width">4</arg>
+    
+    <!-- Exclude directories -->
+    <exclude>vendor/</exclude>
+    <exclude>generated/</exclude>
+    
+    <!-- Include src directory -->
+    <file>src/</file>
+    
+    <!-- Magento2 standard -->
+    <rule ref="Magento2"/>
+    
+    <!-- Extra rules -->
+    <rule ref="PSR12"/>
+</ruleset>

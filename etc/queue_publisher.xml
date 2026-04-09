@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<!--
+  ~ Copyright (c) 2026. Oleksandr Dykyi (https://github.com/odykyi-dev)
+  ~
+  ~ MIT License
+  -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Config/etc/queue_publisher.xsd">
+    <publisher topic="odykyi.esb.order.sync">
+        <connection name="amqp" exchange="magento"/>
+    </publisher>
+</config>
