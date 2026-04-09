@@ -19,8 +19,6 @@ use Odykyi\EsbConnector\Helper\ConfigHelper;
  * Class SendOrderToEsbObserver
  * Listens to checkout order submission and publishes order to queue
  *
- * @category  Odykyi
- * @package   Odykyi_EsbConnector
  * @author    Oleksandr Dykyi <dykyi.oleksandr@gmail.com>
  * @copyright Copyright (c) 2026
  * @license   https://opensource.org/licenses/MIT MIT
@@ -28,15 +26,27 @@ use Odykyi\EsbConnector\Helper\ConfigHelper;
 class SendOrderToEsbObserver implements ObserverInterface
 {
     /**
+     * @var OrderPublisherServiceInterface
+     */
+    private OrderPublisherServiceInterface $orderPublisherService;
+
+    /**
+     * @var ConfigHelper
+     */
+    private ConfigHelper $configHelper;
+
+    /**
      * SendOrderToEsbObserver constructor
      *
      * @param OrderPublisherServiceInterface $orderPublisherService
      * @param ConfigHelper $configHelper
      */
     public function __construct(
-        private readonly OrderPublisherServiceInterface $orderPublisherService,
-        private readonly ConfigHelper $configHelper
+        OrderPublisherServiceInterface $orderPublisherService,
+        ConfigHelper $configHelper
     ) {
+        $this->orderPublisherService = $orderPublisherService;
+        $this->configHelper = $configHelper;
     }
 
     /**

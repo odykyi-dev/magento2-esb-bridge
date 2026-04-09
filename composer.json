@@ -12,6 +12,13 @@
             "role": "Developer"
         }
     ],
+    "repositories": {
+        "magento": {
+            "type": "composer",
+            "url": "https://repo.magento.com",
+            "canonical": true
+        }
+    },
     "require": {
         "php": "~8.2.0||~8.3.0||~8.4.0",
         "magento/framework": ">=103.0.0",
@@ -29,5 +36,11 @@
     "require-dev": {
         "magento/magento-coding-standard": "*",
         "phpstan/phpstan": "^1.10"
+    },
+    "config": {
+        "allow-plugins": {
+            "magento/*": true,
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
     }
 }

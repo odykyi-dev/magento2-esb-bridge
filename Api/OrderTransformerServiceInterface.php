@@ -16,8 +16,6 @@ use Odykyi\EsbConnector\Api\Data\EsbOrderDataInterface;
  * Interface OrderTransformerServiceInterface
  * Transforms Magento order to ESB data object
  *
- * @category  Odykyi
- * @package   Odykyi_EsbConnector
  * @author    Oleksandr Dykyi <dykyi.oleksandr@gmail.com>
  * @copyright Copyright (c) 2026
  * @license   https://opensource.org/licenses/MIT MIT

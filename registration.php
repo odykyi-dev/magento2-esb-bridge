@@ -14,4 +14,3 @@ ComponentRegistrar::register(
     'Odykyi_EsbConnector',
     __DIR__
 );
-
