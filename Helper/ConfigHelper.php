@@ -17,17 +17,20 @@ use Magento\Framework\Encryption\EncryptorInterface;
  * Class ConfigHelper
  * Provides access to ESB Connector configuration settings
  *
- * @category  Odykyi
- * @package   Odykyi_EsbConnector
  * @author    Oleksandr Dykyi <dykyi.oleksandr@gmail.com>
  * @copyright Copyright (c) 2026
  * @license   https://opensource.org/licenses/MIT MIT
  */
 class ConfigHelper extends AbstractHelper
 {
-    private const string XML_PATH_ESB_CONNECTOR_GENERAL_ENABLED = 'esb_connector/general/enabled';
-    private const string XML_PATH_ESB_CONNECTOR_GENERAL_API_URL = 'esb_connector/general/api_url';
-    private const string XML_PATH_ESB_CONNECTOR_GENERAL_API_TOKEN = 'esb_connector/general/api_token';
+    private const XML_PATH_ESB_CONNECTOR_GENERAL_ENABLED = 'esb_connector/general/enabled';
+    private const XML_PATH_ESB_CONNECTOR_GENERAL_API_URL = 'esb_connector/general/api_url';
+    private const XML_PATH_ESB_CONNECTOR_GENERAL_API_TOKEN = 'esb_connector/general/api_token';
+
+    /**
+     * @var EncryptorInterface
+     */
+    private EncryptorInterface $encryptor;
 
     /**
      * ConfigHelper constructor
@@ -37,9 +40,10 @@ class ConfigHelper extends AbstractHelper
      */
     public function __construct(
         Context $context,
-        private readonly EncryptorInterface $encryptor
+        EncryptorInterface $encryptor
     ) {
         parent::__construct($context);
+        $this->encryptor = $encryptor;
     }
 
     /**

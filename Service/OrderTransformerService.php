@@ -19,8 +19,6 @@ use Odykyi\EsbConnector\Api\OrderTransformerServiceInterface;
  * Class OrderTransformerService
  * Transforms Magento order to ESB data object
  *
- * @category  Odykyi
- * @package   Odykyi_EsbConnector
  * @author    Oleksandr Dykyi <dykyi.oleksandr@gmail.com>
  * @copyright Copyright (c) 2026
  * @license   https://opensource.org/licenses/MIT MIT
@@ -28,13 +26,18 @@ use Odykyi\EsbConnector\Api\OrderTransformerServiceInterface;
 class OrderTransformerService implements OrderTransformerServiceInterface
 {
     /**
+     * @var EsbOrderDataInterfaceFactory
+     */
+    private EsbOrderDataInterfaceFactory $esbOrderDataFactory;
+
+    /**
      * OrderTransformerService constructor
      *
      * @param EsbOrderDataInterfaceFactory $esbOrderDataFactory
      */
-    public function __construct(
-        private readonly EsbOrderDataInterfaceFactory $esbOrderDataFactory
-    ) {
+    public function __construct(EsbOrderDataInterfaceFactory $esbOrderDataFactory)
+    {
+        $this->esbOrderDataFactory = $esbOrderDataFactory;
     }
 
     /**

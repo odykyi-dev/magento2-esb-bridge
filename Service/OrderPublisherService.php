@@ -16,8 +16,6 @@ use Odykyi\EsbConnector\Api\OrderPublisherServiceInterface;
  * Class OrderPublisherService
  * Publishes order ID to message queue
  *
- * @category  Odykyi
- * @package   Odykyi_EsbConnector
  * @author    Oleksandr Dykyi <dykyi.oleksandr@gmail.com>
  * @copyright Copyright (c) 2026
  * @license   https://opensource.org/licenses/MIT MIT
@@ -25,13 +23,18 @@ use Odykyi\EsbConnector\Api\OrderPublisherServiceInterface;
 class OrderPublisherService implements OrderPublisherServiceInterface
 {
     /**
+     * @var PublisherInterface
+     */
+    private PublisherInterface $publisher;
+
+    /**
      * OrderPublisherService constructor
      *
      * @param PublisherInterface $publisher
      */
-    public function __construct(
-        private readonly PublisherInterface $publisher
-    ) {
+    public function __construct(PublisherInterface $publisher)
+    {
+        $this->publisher = $publisher;
     }
 
     /**

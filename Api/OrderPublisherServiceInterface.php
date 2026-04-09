@@ -11,11 +11,15 @@ namespace Odykyi\EsbConnector\Api;
 
 /**
  * Interface OrderPublisherInterface
+ *
+ * @author    Oleksandr Dykyi <dykyi.oleksandr@gmail.com>
+ * @copyright Copyright (c) 2026
+ * @license   https://opensource.org/licenses/MIT MIT
  * @api
  */
 interface OrderPublisherServiceInterface
 {
-    public const string TOPIC_NAME = 'odykyi.esb.order.sync';
+    public const TOPIC_NAME = 'odykyi.esb.order.sync';
 
     /**
      * Publish order ID to the message queue

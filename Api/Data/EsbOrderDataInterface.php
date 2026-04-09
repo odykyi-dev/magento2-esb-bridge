@@ -13,8 +13,6 @@ namespace Odykyi\EsbConnector\Api\Data;
  * Interface EsbOrderDataInterface
  * Represents order data for ESB integration
  *
- * @category  Odykyi
- * @package   Odykyi_EsbConnector
  * @author    Oleksandr Dykyi <dykyi.oleksandr@gmail.com>
  * @copyright Copyright (c) 2026
  * @license   https://opensource.org/licenses/MIT MIT
@@ -53,6 +51,7 @@ interface EsbOrderDataInterface
     public const ADDRESS_KEY_COUNTRY = 'country';
     public const ADDRESS_KEY_STREET = 'street';
     public const ADDRESS_KEY_TELEPHONE = 'telephone';
+
     /**
      * Get entity ID
      */

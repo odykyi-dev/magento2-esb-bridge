@@ -2,9 +2,16 @@ name: CI
 
 on:
   push:
-    branches: [ develop, master ]
+    branches:
+      - '**'
+    tags:
+      - 'v*'
   pull_request:
-    branches: [ develop, master ]
+    branches:
+      - '**'
+
+env:
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   php-lint:
@@ -16,7 +23,7 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.3'
+          php-version: '8.2'
 
       - name: PHP Syntax Check
         run: |
@@ -28,18 +35,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
+      - name: Run Magento Coding Standard
+
+        uses: extdn/github-actions-m2/magento-coding-standard/8.3@master
         with:
-          php-version: '8.3'
-
-      - name: Install dependencies
-        run: |
-          composer install --no-interaction
-
-      - name: Run PHPCodeSniffer
-        run: |
-          vendor/bin/phpcs --standard=Magento2 --extensions=php src/
+          phpcs_standard: Magento2
 
   phpstan:
     name: PHPStan Static Analysis
@@ -47,15 +47,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.3'
-
-      - name: Install dependencies
-        run: |
-          composer install --no-interaction
-
       - name: Run PHPStan
-        run: |
-          vendor/bin/phpstan analyse src/ --level=5 --no-progress
+        with:
+          composer_name: odykyi/module-esb-connector
+        uses: extdn/github-actions-m2/magento-phpstan/8.3@master

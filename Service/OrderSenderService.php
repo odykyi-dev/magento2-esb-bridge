@@ -24,14 +24,42 @@ use Psr\Log\LoggerInterface;
  * Class OrderSenderService
  * Sends order data to ESB system via HTTP
  *
- * @category  Odykyi
- * @package   Odykyi_EsbConnector
  * @author    Oleksandr Dykyi <dykyi.oleksandr@gmail.com>
  * @copyright Copyright (c) 2026
  * @license   https://opensource.org/licenses/MIT MIT
  */
 class OrderSenderService implements OrderSenderServiceInterface
 {
+    /**
+     * @var OrderTransformerServiceInterface
+     */
+    private OrderTransformerServiceInterface $transformerService;
+
+    /**
+     * @var UuidGenerator
+     */
+    private UuidGenerator $uuidGenerator;
+
+    /**
+     * @var ConfigHelper
+     */
+    private ConfigHelper $configHelper;
+
+    /**
+     * @var LoggerInterface
+     */
+    private LoggerInterface $logger;
+
+    /**
+     * @var ClientFactory
+     */
+    private ClientFactory $httpClientFactory;
+
+    /**
+     * @var SerializerInterface
+     */
+    private SerializerInterface $serializer;
+
     /**
      * OrderSenderService constructor
      *
@@ -43,13 +71,19 @@ class OrderSenderService implements OrderSenderServiceInterface
      * @param SerializerInterface $serializer
      */
     public function __construct(
-        private readonly OrderTransformerServiceInterface $transformerService,
-        private readonly UuidGenerator $uuidGenerator,
-        private readonly ConfigHelper $configHelper,
-        private readonly LoggerInterface $logger,
-        private readonly ClientFactory $httpClientFactory,
-        private readonly SerializerInterface $serializer
+        OrderTransformerServiceInterface $transformerService,
+        UuidGenerator $uuidGenerator,
+        ConfigHelper $configHelper,
+        LoggerInterface $logger,
+        ClientFactory $httpClientFactory,
+        SerializerInterface $serializer
     ) {
+        $this->transformerService = $transformerService;
+        $this->uuidGenerator = $uuidGenerator;
+        $this->configHelper = $configHelper;
+        $this->logger = $logger;
+        $this->httpClientFactory = $httpClientFactory;
+        $this->serializer = $serializer;
     }
 
     /**

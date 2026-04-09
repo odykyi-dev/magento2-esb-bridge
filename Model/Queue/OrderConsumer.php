@@ -20,14 +20,27 @@ use Psr\Log\LoggerInterface;
  * Class OrderConsumer
  * Processes order from message queue and sends to ESB
  *
- * @category  Odykyi
- * @package   Odykyi_EsbConnector
  * @author    Oleksandr Dykyi <dykyi.oleksandr@gmail.com>
  * @copyright Copyright (c) 2026
  * @license   https://opensource.org/licenses/MIT MIT
  */
 class OrderConsumer
 {
+    /**
+     * @var OrderRepositoryInterface
+     */
+    private OrderRepositoryInterface $orderRepository;
+
+    /**
+     * @var OrderSenderServiceInterface
+     */
+    private OrderSenderServiceInterface $orderSender;
+
+    /**
+     * @var LoggerInterface
+     */
+    private LoggerInterface $logger;
+
     /**
      * OrderConsumer constructor
      *
@@ -36,10 +49,13 @@ class OrderConsumer
      * @param LoggerInterface $logger
      */
     public function __construct(
-        private readonly OrderRepositoryInterface $orderRepository,
-        private readonly OrderSenderServiceInterface $orderSender,
-        private readonly LoggerInterface $logger
+        OrderRepositoryInterface $orderRepository,
+        OrderSenderServiceInterface $orderSender,
+        LoggerInterface $logger
     ) {
+        $this->orderRepository = $orderRepository;
+        $this->orderSender = $orderSender;
+        $this->logger = $logger;
     }
 
     /**
